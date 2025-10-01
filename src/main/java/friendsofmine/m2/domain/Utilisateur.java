@@ -29,7 +29,7 @@ public class Utilisateur {
     @Pattern(regexp = "[FM]")
     private @NotBlank String sexe;
 
-    @OneToMany(mappedBy = "responsable", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "responsable", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     List<Activite> activites = new ArrayList<>();
 
     public Utilisateur(String nom, String prenom, String mail, String sexe) {

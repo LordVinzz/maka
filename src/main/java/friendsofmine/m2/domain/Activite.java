@@ -2,7 +2,6 @@ package friendsofmine.m2.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +15,6 @@ public class Activite {
     private @NotBlank String titre;
     private String descriptif;
     @ManyToOne
-    @NotNull
     Utilisateur responsable;
 
     public Activite(String titre, String descriptif) {
