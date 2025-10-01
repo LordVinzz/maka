@@ -5,12 +5,16 @@ import friendsofmine.m2.domain.Utilisateur;
 import friendsofmine.m2.repositories.ActiviteRepository;
 import friendsofmine.m2.repositories.UtilisateurRepository;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Locale;
 
 @Setter
 @Getter
@@ -42,4 +46,17 @@ public class ActiviteService {
     public long countActivite() {
         return activiteRepository.count();
     }
+
+    public ArrayList<Activite> findAllActivites() {
+        Iterable<Activite> activites = activiteRepository.findAll();
+        ArrayList<Activite> activiteList = new ArrayList<>();
+        activites.forEach(activiteList::add);
+
+        Collator collator = Collator.getInstance(Locale.getDefault());
+        collator.setStrength(Collator.PRIMARY);
+        activiteList.sort(Comparator.comparing(Activite::getTitre, collator));
+
+        return activiteList;
+    }
 }
+
