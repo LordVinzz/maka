@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -42,19 +43,15 @@ public class ActiviteService {
         return activiteRepository.findById(id).orElse(null);
     }
 
-
     public long countActivite() {
         return activiteRepository.count();
     }
 
     public ArrayList<Activite> findAllActivites() {
-        return StreamSupport
-                .stream(activiteRepository.findAll().spliterator(), false)
-                .sorted((a1, a2) -> a1.getTitre().compareToIgnoreCase(a2.getTitre()))
-                .collect(Collectors.toCollection(ArrayList::new));
+        return new ArrayList<>(activiteRepository.findAll());
     }
 
 
 
-}
 
+}
