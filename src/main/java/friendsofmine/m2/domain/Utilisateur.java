@@ -1,5 +1,6 @@
 package friendsofmine.m2.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -14,6 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@JsonIgnoreProperties({"activites"})
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -63,3 +65,4 @@ public class Utilisateur {
         }
     }
 }
+
