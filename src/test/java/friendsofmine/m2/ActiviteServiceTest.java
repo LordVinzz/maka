@@ -72,8 +72,8 @@ public class ActiviteServiceTest {
         // given: un ActiviteService
         // when: la méthode findAllActivite est invoquée
         activiteService.findAllActivites();
-        // then: la méthode findAll du Repository associé est invoquée
-        verify(activiteService.getActiviteRepository()).findAll();
+        // then: la méthode dédiée au chargement du responsable est invoquée
+        verify(activiteService.getActiviteRepository()).findAllWithResponsableOrderByTitre();
     }
 
 }

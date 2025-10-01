@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Setter
 @Getter
@@ -48,10 +46,7 @@ public class ActiviteService {
     }
 
     public ArrayList<Activite> findAllActivites() {
-        return StreamSupport
-                .stream(activiteRepository.findAll().spliterator(), false)
-                .sorted((a1, a2) -> a1.getTitre().compareToIgnoreCase(a2.getTitre()))
-                .collect(Collectors.toCollection(ArrayList::new));
+        return new ArrayList<>(activiteRepository.findAllWithResponsableOrderByTitre());
     }
 
 
