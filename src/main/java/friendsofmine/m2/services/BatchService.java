@@ -3,6 +3,7 @@ package friendsofmine.m2.services;
 import friendsofmine.m2.domain.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BatchService {
@@ -30,6 +31,7 @@ public class BatchService {
         return utilisateurService.saveUtilisateur(u3);
     }
 
+    @Transactional
     public void saveUsAll() {
         saveU1();
         saveU2();
@@ -38,3 +40,5 @@ public class BatchService {
     }
 
 }
+
+// coucou toi :)

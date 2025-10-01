@@ -92,4 +92,7 @@ public class DataLoader implements ApplicationRunner {
         initUtilisateurs();
         initActivites();
     }
+
+    public void saveUtilisateursAndActivites() {
+    }
 }
